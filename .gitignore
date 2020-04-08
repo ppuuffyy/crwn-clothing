@@ -13,7 +13,7 @@
 
 # misc
 
-/src/firebase/firebase.util.js
+
 
 .DS_Store
 .env.local
