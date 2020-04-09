@@ -3,7 +3,8 @@ import {addItemToCart} from './cart.utils';
 
 const INITIAL_STATE = {
   hidden: true,
-  cartItems: []
+  cartItems: []//,
+ // itemCount: 0
 };
 
 const cartReducer = (state = INITIAL_STATE, action) => {
@@ -16,7 +17,8 @@ const cartReducer = (state = INITIAL_STATE, action) => {
     case CartActionTypes.ADD_ITEM:
       return {
         ...state,
-        cartItems: addItemToCart(state.cartItems, action.payload)
+        cartItems: addItemToCart(state.cartItems, action.payload)//,
+        //itemCount: state.cartItems.reduce((accumulatedQuantity, cartItem) => accumulatedQuantity + cartItem.quantity,0)+1
       }
     default:
       return state;
