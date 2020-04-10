@@ -1,10 +1,9 @@
 import CartActionTypes from './cart.types';
 
 export const toggleCartHidden = () => {
-    const hiddenState = {hidden: true};
+    
     return ({
-      type: CartActionTypes.TOGGLE_CART_HIDDEN,
-      payload: hiddenState
+      type: CartActionTypes.TOGGLE_CART_HIDDEN
     });
 
   }
