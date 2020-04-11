@@ -1,20 +1,20 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Route} from 'react-router-dom';
 import {connect} from 'react-redux';
-import {createStructuredSelector} from 'reselect'
+//import {createStructuredSelector} from 'reselect'
 
 //import CollectionsOverview from '../../components/collections-overview/collections-overview.component';
 import CollectionsOverviewContainer from '../../components/collections-overview/collections-overview.container';
 import CollectionPageContainer from '../collection/collection.container';
 import {fetchCollectionsStartAsync} from '../../redux/shop/shop.actions';
-import { selectIsCollectionsLoaded} from '../../redux/shop/shop.selector';
+//import { selectIsCollectionsLoaded} from '../../redux/shop/shop.selector';
 
 //import WithSpinner from '../../components/with-spinner/with-spinner.component';
 
 //const CollectionsOverviewWithSpinner = WithSpinner(CollectionsOverview);
 //const CollectionPageWithSpinner = WithSpinner(CollectionPage);
 
-class ShopPage extends React.Component  {
+const ShopPage = ({fetchCollectionsStartAsync, match}) =>  {
     // constructor(){
     //     super();
     //     this.state = {
@@ -28,7 +28,7 @@ class ShopPage extends React.Component  {
 
     // unsubscribeFromSnapshot = null;
 
-    componentDidMount(){
+    //componentDidMount(){
         //const {updateCollections} = this.props;
         //const collectionRef = firestore.collection('collections');
         // this.unsubscribeFromSnapshot = collectionRef.onSnapshot(async snapshot => {
@@ -45,18 +45,23 @@ class ShopPage extends React.Component  {
 
         // fetch('https://firestore.googleapis.com/v1/projects/crwn-db-e66f1/databases/(default)/documents/collections')
         //     .then(response => response.json()).then(collections => console.log(collections));
-        const {fetchCollectionsStartAsync} = this.props;
-        fetchCollectionsStartAsync();
+    //     const {fetchCollectionsStartAsync} = this.props;
+    //     fetchCollectionsStartAsync();
 
-    };
+    // };
 
-    componentWillUnmount() {
-      //  this.unsubscribeFromSnapshot();
-    };
+    // componentWillUnmount() {
+    //   //  this.unsubscribeFromSnapshot();
+    // };
     
-    render(){
-        const {match} = this.props;
+
+        //const {match} = this.props;
         //const {loading} = this.state;
+
+        useEffect(() => {
+            fetchCollectionsStartAsync();
+        }, [fetchCollectionsStartAsync]);
+
 
         return (
             <div className='shop-page'> 
@@ -72,7 +77,7 @@ class ShopPage extends React.Component  {
                 />
             </div>
         );
-    }
+    
     }
 
     // const mapStateToProps = createStructuredSelector({

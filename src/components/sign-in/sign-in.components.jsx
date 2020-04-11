@@ -1,24 +1,18 @@
-import React from 'react';
+import React, {useState} from 'react';
 import FormInput from '../form-input/form-input.component.jsx';
 import CustomButton from '../custom-button/custom-button.component';
 import {auth, signInWithGoogle} from '../../firebase/firebase.util';
 
 import './sign-in.styles.scss';
 
-class SignIn extends React.Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            email: '',
-            password: ''
-        }
-    }
+const SignIn = () => {
+ //   const [email, setEmail] = useState('');
+ //   const [password, setPassword] = useState('');
+    const [userCredentials, setCredentials] = useState({email: '', password: ''});
+    const {email, password} = userCredentials;
 
-    handleSubmit = async event => {
+    const handleSubmit = async event => {
         event.preventDefault();
-
-        const {email, password} = this.state;
-
         try {
             await auth.signInWithEmailAndPassword(email, password);
             this.setState({email: '', password: ''});
@@ -26,39 +20,36 @@ class SignIn extends React.Component {
         }catch(error){
             console.log(error);
         }
-
-        
-
     }
 
-    handleChange = event => {
+    const handleChange = event => {
         const {value, name} = event.target;
-        this.setState({[name]: value});  // a name valtozoban megkapom hogy a state melyik valtozojaba 
+        setCredentials({...userCredentials, [name]: value});  // a name valtozoban megkapom hogy a state melyik valtozojaba 
                                         // kell betolteni a value erteket. ezt a meghivasnal maga az
                                         //input tolti fel azzal a name ertekkel amit ott definialtam
     }
 
-    render() {
+
         return (
             <div className='sign-in'>
                 <h2 className='title'> I already have an account</h2>
                 <span>Sign in with your email and password</span>
 
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={handleSubmit}>
                     <FormInput 
                         name="email" 
                         type="email" 
                         label="Email"
-                        value={this.state.email} 
-                        handleChange={this.handleChange}
+                        value={email} 
+                        handleChange={handleChange}
                         required />
                     
                     <FormInput 
                         name="password" 
                         type="password" 
                         label="Password"
-                        value={this.state.password} 
-                        handleChange={this.handleChange}
+                        value={password} 
+                        handleChange={handleChange}
                         required />
                     <div className='buttons'>
                         <CustomButton type='submit'> Sign in </CustomButton>
@@ -70,7 +61,7 @@ class SignIn extends React.Component {
             </div>
         );
 
-    }
+    
 
 }
 
