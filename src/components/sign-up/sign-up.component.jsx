@@ -2,12 +2,12 @@ import React,{useState} from 'react';
 import {connect} from 'react-redux';
 import FormInput from '../form-input/form-input.component';
 import CustomButton from '../custom-button/custom-button.component';
-import {signUpStart, emailSignInStart} from '../../redux/user/user.actions';
-//import {auth, createUserProfileDocument} from '../../firebase/firebase.util';
+import {signUpStart} from '../../redux/user/user.actions';
+
 
 
 import './sign-up.styles.scss';
-//import { signInWithEmail } from '../../redux/user/user.sagas';
+
 
 
 const SignUp = ({signUpStart}) => {
